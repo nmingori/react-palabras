@@ -11,9 +11,7 @@ const App = () => {
     return (
         <>
             {(category) ? (
-                <div>
-                    <Game category={category} setCategory={setCategory} />
-                </div>
+                <Game category={category} setCategory={setCategory} />
             ) : (
                 <Menu setCategory={setCategory} />
             )}

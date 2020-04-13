@@ -8,19 +8,25 @@ const Keyboard = ({pressNewLetter, usedLetters}: any) => {
         return usedLetters.includes(letterKey);
     }
     return (
-        <div className="mb-4">
-            {letterKeys.map(letterKey => 
-                (!isInUsedLetters(letterKey) &&
-                    <button type="button" className="btn btn-outline-primary m-1" onClick={() => pressNewLetter(letterKey)} key={letterKey}>{letterKey}</button>  
-                )  
-            )}
+        <>
+            <div className="row justify-content-center">
+                <div className="col col-lg-8">
+                    {letterKeys.map(letterKey => 
+                        (!isInUsedLetters(letterKey) &&
+                            <button type="button" className="btn btn-outline-primary m-1" onClick={() => pressNewLetter(letterKey)} key={letterKey}>{letterKey}</button>  
+                        )  
+                    )}
+                </div>
+            </div>
 
             {(usedLetters.length > 0) && 
-                <div className="d-flex justify-content-center mt-2">
-                    <strong className="mr-1">Letras utilizadas:</strong>{usedLetters.join(" - ")}
+                <div className="row justify-content-center mt-3">
+                    <div className="col col-lg-8">
+                        <strong className="mr-1">Letras utilizadas:</strong>{usedLetters.join(" - ")}
+                    </div>
                 </div>
             }
-        </div>
+        </>
     )
 }
 

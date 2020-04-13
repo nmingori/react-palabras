@@ -43,39 +43,39 @@ const Game = ({category, setCategory}: any) => {
 
     return (
         <>
-            <div>
+            <div className="d-flex justify-content-center"><strong className="mr-1">Categoría:</strong>{category}</div>
 
-                <div className="d-flex justify-content-center"><strong className="mr-1">Categoría:</strong>{category}</div>
+            <Lives playerLives={playerLives} maxLives={MAX_LIVES} />
 
-                <Lives playerLives={playerLives} maxLives={MAX_LIVES} />
+            <DisplaySecretWord usedLetters={usedLetters} secretWord={secretWord.word} gameStatus={gameStatus} setGameStatus={setGameStatus} />
 
-                <div>
-                    <DisplaySecretWord usedLetters={usedLetters} secretWord={secretWord.word} gameStatus={gameStatus} setGameStatus={setGameStatus} />
+            <div className="container mb-5">
+                {(gameStatus === GameStatus.PLAYING) ? ( 
 
-                    {(gameStatus === GameStatus.PLAYING) && 
-                        <>
-                            <Keyboard pressNewLetter={pressNewLetter} usedLetters={usedLetters} />
-
-                            {(playerLives === 1) &&
-                                <p>Te queda una sola vida!!</p>
-                            }
-                        </>     
-                    }
-                </div>
-            
-                {(gameStatus !== GameStatus.PLAYING) &&
-                    <div>
+                    <Keyboard pressNewLetter={pressNewLetter} usedLetters={usedLetters} />
+                
+                ) : (
+        
+                    <>
                         <p>{gameStatus}</p>
 
                         {(gameStatus === GameStatus.LOOSE) && 
                             <p>La palabra era <strong>{secretWord.word} {secretWord.translate && <span>({secretWord.translate})</span>}</strong></p>
                         }
+                    </>
 
-                        <button type="button" className="btn btn-outline-dark btn-sm mb-3" onClick={() => retryInCategory()}><img src={iconRefresh} alt="refresh" style={{height: "18px"}}/> Volver a jugar</button>
+                )}
+            </div>
+
+            <div className="container">
+                <div className="row justify-content-between justify-content-md-center">
+                    <div className="col-lg-2 col-7 align-self-start">
+                        <button type="button" className="btn btn-outline-dark btn-sm" onClick={() => setCategory(null)}><img src={iconBack} alt="back" style={{height: "18px"}}/> Cambiar categoría</button>
                     </div>
-                }
-
-                <button type="button" className="btn btn-outline-dark btn-sm" onClick={() => setCategory(null)}><img src={iconBack} alt="back" style={{height: "18px"}}/>  Volver al Menú</button>
+                    <div className="col-lg-2 col-5 align-self-end">
+                        <button type="button" className="btn btn-outline-dark btn-sm" onClick={() => retryInCategory()}><img src={iconRefresh} alt="refresh" style={{height: "18px"}}/> Otra palabra</button>
+                    </div>
+                </div>
             </div>
         </>
     )

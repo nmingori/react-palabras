@@ -14,18 +14,24 @@ const Lives = ({playerLives, maxLives}: any) => {
     }, [maxLives, playerLives]);
 
     return (
-        <div className="d-flex justify-content-center mb-4">
-            <strong className="mr-1">Vidas:</strong>
+        <div className="mb-4">
+            <div className="d-flex justify-content-center">
+                <strong className="mr-1">Vidas:</strong>
 
-            {livesToShow.map((live, i) => (
-                <span key={i}>
-                    {(live === true) ? (
-                        <span>&#x2764;&#xFE0F;</span>
-                    ) : (
-                        <span style={{opacity:'.5'}}>&#x1F5A4;</span>
-                    )}
-                </span>
-            ))}
+                {livesToShow.map((live, i) => (
+                    <span key={i}>
+                        {(live === true) ? (
+                            <span>&#x2764;&#xFE0F;</span>
+                        ) : (
+                            <span style={{opacity:'.5'}}>&#x1F5A4;</span>
+                        )}
+                    </span>
+                ))}
+            </div>
+
+            {(playerLives === 1) &&
+                <p className="text-secondary">Te queda una sola vida</p>
+            }
         </div>
     )
 }

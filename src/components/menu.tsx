@@ -38,7 +38,7 @@ const Menu = ({setCategory}: any) => {
 
             {menuCategories.map(categoryGroup => (
                 <div className="row justify-content-center mb-4" key={categoryGroup.title} >
-                    <div className="d-flex flex-column">
+                    <div className="col-auto d-flex flex-column">
                         <h5>{categoryGroup.title}</h5>
 
                         {categoryGroup.categories.map(categoryName => (
