@@ -19,18 +19,18 @@ const Lives = ({playerLives, maxLives}: any) => {
                 <strong className="mr-1">Vidas:</strong>
 
                 {livesToShow.map((live, i) => (
-                    <span key={i}>
+                    <div key={i}>
                         {(live === true) ? (
                             <span>&#x2764;&#xFE0F;</span>
                         ) : (
                             <span style={{opacity:'.5'}}>&#x1F5A4;</span>
                         )}
-                    </span>
+                    </div>
                 ))}
             </div>
 
             {(playerLives === 1) &&
-                <p className="text-secondary">Te queda una sola vida</p>
+                <p className="text-danger"><small>Te queda una sola vida</small></p>
             }
         </div>
     )

@@ -43,7 +43,7 @@ const Game = ({category, setCategory}: any) => {
 
     return (
         <>
-            <div className="d-flex justify-content-center"><strong className="mr-1">Categoría:</strong>{category}</div>
+            <div className="d-flex justify-content-center mb-1"><strong className="mr-1">Categoría:</strong>{category}</div>
 
             <Lives playerLives={playerLives} maxLives={MAX_LIVES} />
 
@@ -57,8 +57,6 @@ const Game = ({category, setCategory}: any) => {
                 ) : (
         
                     <>
-                        <p>{gameStatus}</p>
-
                         {(gameStatus === GameStatus.LOOSE) && 
                             <p>La palabra era <strong>{secretWord.word} {secretWord.translate && <span>({secretWord.translate})</span>}</strong></p>
                         }

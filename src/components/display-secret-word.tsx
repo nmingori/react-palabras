@@ -30,12 +30,22 @@ const DisplaySecretWord = ({secretWord, usedLetters, gameStatus, setGameStatus}:
         return (letter !== "-") ? "btn-danger" : "btn-outline-danger";
     }
 
+    const boxTitle = (): string => {
+        return (gameStatus === GameStatus.PLAYING) ? "Adiviná la palabra:" : gameStatus;
+    }
+
     return (
-        <div className="btn-group mb-4">
-            {wordOutput.map((letter, i) => (
-                <button type="button" className={`btn ${letterStyle(letter)} btn-sm`} key={i}>{letter}</button>
-            ))}
-        </div>
+        <div className="card m-4">
+            <div className="card-body"> 
+                <p>{boxTitle()}</p>
+
+                <div className="btn-group mb-2">
+                    {wordOutput.map((letter, i) => (
+                        <button type="button" className={`btn ${letterStyle(letter)} btn-sm`} key={i}>{letter}</button>
+                    ))}
+                </div>
+            </div>
+        </div>                                                
     )
 }
 
