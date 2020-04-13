@@ -9,13 +9,13 @@ const App = () => {
     const [category, setCategory] = useState<Categories|null>(null);
     
     return (
-        <>
-            {(category) ? (
-                <Game category={category} setCategory={setCategory} />
-            ) : (
-                <Menu setCategory={setCategory} />
-            )}
-        </>
+        <div className="py-3">
+                    {(category) ? (
+                        <Game category={category} setCategory={setCategory} />
+                    ) : (
+                        <Menu setCategory={setCategory} />
+                    )}
+        </div>
     )
 }
 

@@ -2,7 +2,7 @@ import * as React from 'react';
 
 const letterKeys:string[] = 'AÁBCDEÉFGHIÍJKLMNÑOÓPQRSTUÚVWXYZ'.split("");
 
-const Keyboard = ({pressNewLetter, usedLetters}: any) => {
+const Keyboard = ({pressNewLetter, usedLetters, playerLives}: any) => {
 
     const isInUsedLetters = (letterKey: string): boolean => {
         return usedLetters.includes(letterKey);
@@ -18,6 +18,10 @@ const Keyboard = ({pressNewLetter, usedLetters}: any) => {
                     )}
                 </div>
             </div>
+
+            {(playerLives === 1) &&
+                <p className="text-danger"><small>Te queda una sola vida</small></p>
+            }
 
             {(usedLetters.length > 0) && 
                 <div className="row justify-content-center mt-3">

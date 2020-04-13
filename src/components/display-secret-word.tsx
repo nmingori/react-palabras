@@ -35,7 +35,7 @@ const DisplaySecretWord = ({secretWord, usedLetters, gameStatus, setGameStatus}:
     }
 
     return (
-        <div className="card m-4">
+        <div className="card m-3">
             <div className="card-body"> 
                 <p>{boxTitle()}</p>
 

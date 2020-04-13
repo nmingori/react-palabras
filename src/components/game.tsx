@@ -5,8 +5,7 @@ import Keyboard from './keyboard';
 import DisplaySecretWord from './display-secret-word';
 import {WordService, Word} from '../services/word-service';
 import {GameStatus} from './game-status';
-import iconBack from './images/back.svg';
-import iconRefresh from './images/refresh.svg';
+import FooterMenu from './footer-menu';
 
 
 const MAX_LIVES = 5;
@@ -49,10 +48,10 @@ const Game = ({category, setCategory}: any) => {
 
             <DisplaySecretWord usedLetters={usedLetters} secretWord={secretWord.word} gameStatus={gameStatus} setGameStatus={setGameStatus} />
 
-            <div className="container mb-5">
+            <div className="container mb-4">
                 {(gameStatus === GameStatus.PLAYING) ? ( 
 
-                    <Keyboard pressNewLetter={pressNewLetter} usedLetters={usedLetters} />
+                    <Keyboard pressNewLetter={pressNewLetter} usedLetters={usedLetters} playerLives={playerLives} />
                 
                 ) : (
         
@@ -65,16 +64,7 @@ const Game = ({category, setCategory}: any) => {
                 )}
             </div>
 
-            <div className="container">
-                <div className="row justify-content-between justify-content-md-center">
-                    <div className="col-lg-2 col-7 align-self-start">
-                        <button type="button" className="btn btn-outline-dark btn-sm" onClick={() => setCategory(null)}><img src={iconBack} alt="back" style={{height: "18px"}}/> Cambiar categoría</button>
-                    </div>
-                    <div className="col-lg-2 col-5 align-self-end">
-                        <button type="button" className="btn btn-outline-dark btn-sm" onClick={() => retryInCategory()}><img src={iconRefresh} alt="refresh" style={{height: "18px"}}/> Otra palabra</button>
-                    </div>
-                </div>
-            </div>
+            <FooterMenu retryInCategory={retryInCategory} setCategory={setCategory} />
         </>
     )
 }
