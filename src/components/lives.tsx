@@ -1,5 +1,7 @@
 import * as React from 'react';
 import {useEffect, useState} from 'react';
+import iconHeart from './images/heart.png';
+import iconHeartDisabled from './images/heart-disabled.png';
 
 const Lives = ({playerLives, maxLives}: any) => {
 
@@ -18,12 +20,8 @@ const Lives = ({playerLives, maxLives}: any) => {
             <strong className="mr-1">Vidas:</strong>
 
             {livesToShow.map((live, i) => (
-                <div key={i}>
-                    {(live === true) ? (
-                        <span>&#x2764;&#xFE0F;</span>
-                    ) : (
-                        <span style={{opacity:'.5'}}>&#x1F5A4;</span>
-                    )}
+                <div className="mr-1" key={i}>
+                    <img src={(live === true) ? iconHeart : iconHeartDisabled} alt="heart"  />
                 </div>
             ))}
         </div>
