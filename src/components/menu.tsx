@@ -1,18 +1,40 @@
-import * as React from 'react';
+import React from 'react';
 
-export enum Categories {
-    FRUTAS = "Frutas o verduras",
-    OBJETOS = "Objetos",
-    ANIMALES = "Animales",
+export interface Category {
+    name: string;
+    color: string;
+}
 
-    ENG_BODY_PARTS = "Body Parts (Partes del cuerpo)",
-    ENG_COLOURS = "Colours (Colores)",
-    ENG_DAYS_OF_THE_WEEK = "Days of the week (Días de la semana)"
+export const Categories = {
+    FRUTAS: {
+        name: "Frutas o verduras",
+        color: "orange"
+    },
+    OBJETOS: {
+        name: "Objetos",
+        color: "gray"
+    },
+    ANIMALES: {
+        name: "Animales",
+        color: "green"
+    },
+    ENG_BODY_PARTS: {
+        name: "Body Parts (Partes del cuerpo)",
+        color: "blue"
+    },
+    ENG_COLOURS: {
+        name: "Colours (Colores)",
+        color: "red"
+    },
+    ENG_DAYS_OF_THE_WEEK: {
+        name: "Days of the week (Días de la semana)",
+        color: "purple"
+    }
 }
 
 interface CategoryGroup {
     title: string;
-    categories: Categories[];
+    categories: Category[];
 }
 
 const menuCategories:CategoryGroup[] = [
@@ -33,18 +55,16 @@ const menuCategories:CategoryGroup[] = [
 const Menu = ({setCategory}: any) => {
 
     return (
-        <div className="container">
-            <h2 className="mb-4">Palabras</h2>
+        <div>
+            <p className="-h1 -mb-3">Palabras</p>
 
             {menuCategories.map(categoryGroup => (
-                <div className="row justify-content-center mb-4" key={categoryGroup.title} >
-                    <div className="col-auto d-flex flex-column">
-                        <h5>{categoryGroup.title}</h5>
+                <div className="-d-flex-col-center -mb-3" key={categoryGroup.title} >
+                    <p className="-h4 -mb-2">{categoryGroup.title}</p>
 
-                        {categoryGroup.categories.map(categoryName => (
-                            <button type="button" className="btn btn-primary mb-1"onClick={() => setCategory(categoryName)} key={categoryName}>{categoryName}</button>
-                        ))}                     
-                    </div>
+                    {categoryGroup.categories.map(category => (
+                        <button type="button" className={"btn -color-white -mb-2 -bg-" + category.color} onClick={() => setCategory(category)} key={category.name}>{category.name}</button>
+                    ))}     
                 </div> 
 
             ))}

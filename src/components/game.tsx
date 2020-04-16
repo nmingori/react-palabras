@@ -1,5 +1,4 @@
-import * as React from 'react';
-import {useEffect, useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import Lives from './lives';
 import Keyboard from './keyboard';
 import DisplaySecretWord from './display-secret-word';
@@ -42,29 +41,48 @@ const Game = ({category, setCategory}: any) => {
 
     return (
         <>
-            <div className="d-flex justify-content-center mb-1"><strong className="mr-1">Categoría:</strong>{category}</div>
+            <div className="-mb-2">
+                <strong className="-mr-1">Categoría:</strong>{category.name}
+            </div>
 
-            <Lives playerLives={playerLives} maxLives={MAX_LIVES} />
+            <Lives 
+                playerLives={playerLives} 
+                maxLives={MAX_LIVES} 
+            />
 
-            <DisplaySecretWord usedLetters={usedLetters} secretWord={secretWord.word} gameStatus={gameStatus} setGameStatus={setGameStatus} />
-
-            <div className="container mb-4">
+            <DisplaySecretWord 
+                usedLetters={usedLetters} 
+                secretWord={secretWord.word} 
+                gameStatus={gameStatus} 
+                setGameStatus={setGameStatus} 
+                color={category.color}
+            />
+           
+            <div className="-mb-4">
                 {(gameStatus === GameStatus.PLAYING) ? ( 
 
-                    <Keyboard pressNewLetter={pressNewLetter} usedLetters={usedLetters} playerLives={playerLives} />
+                    <Keyboard 
+                        pressNewLetter={pressNewLetter} 
+                        usedLetters={usedLetters} 
+                        playerLives={playerLives} 
+                        color={category.color}
+                    />
                 
                 ) : (
         
                     <>
                         {(gameStatus === GameStatus.LOOSE) && 
-                            <p>La palabra era <strong>{secretWord.word} {secretWord.translate && <span>({secretWord.translate})</span>}</strong></p>
+                            <p>La palabra era <strong className={"-color-" + category.color}>{secretWord.word} {secretWord.translate && <span>({secretWord.translate})</span>}</strong></p>
                         }
                     </>
 
                 )}
             </div>
 
-            <FooterMenu retryInCategory={retryInCategory} setCategory={setCategory} />
+            <FooterMenu 
+                retryInCategory={retryInCategory} 
+                setCategory={setCategory} 
+            />
         </>
     )
 }

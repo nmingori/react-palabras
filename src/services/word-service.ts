@@ -4,7 +4,7 @@ import words_animales from '../data/words_animales.json';
 import words_eng_body_parts from '../data/words_eng_body_parts.json';
 import words_eng_colours from '../data/words_eng_colours.json';
 import words_eng_days_of_the_week from '../data/words_eng_days_of_the_week.json';
-import {Categories} from '../components/menu';
+import { Category, Categories } from '../components/menu';
 
 export interface Word {
     word: string;
@@ -12,26 +12,26 @@ export interface Word {
 }
 
 export class WordService {
-    _getWordsListByCaterogy(category: Categories): Word[] {
+    _getWordsListByCaterogy(category: Category): Word[] {
         let wordsList: Word[] = [];
 
-        switch (category) {
-            case Categories.FRUTAS:
+        switch (category.name) {
+            case Categories.FRUTAS.name:
                 wordsList = words_frutas.words;
                 break;
-            case Categories.OBJETOS:
+            case Categories.OBJETOS.name:
                 wordsList = words_objetos.words;
                 break;    
-            case Categories.ANIMALES:
+            case Categories.ANIMALES.name:
                 wordsList = words_animales.words;
                 break;
-            case Categories.ENG_BODY_PARTS:
+            case Categories.ENG_BODY_PARTS.name:
                 wordsList = words_eng_body_parts.words;
                 break;
-            case Categories.ENG_COLOURS:
+            case Categories.ENG_COLOURS.name:
                 wordsList = words_eng_colours.words;
                 break;
-            case Categories.ENG_DAYS_OF_THE_WEEK:
+            case Categories.ENG_DAYS_OF_THE_WEEK.name:
                 wordsList = words_eng_days_of_the_week.words;
                 break;
         }
@@ -39,7 +39,7 @@ export class WordService {
         return wordsList;
     }
 
-    getWordByCategory(category: Categories): Word {
+    getWordByCategory(category: Category): Word {
         let words: Word[] = this._getWordsListByCaterogy(category);
         return words[Math.floor(Math.random() * words.length)];
     }

@@ -1,8 +1,7 @@
-import * as React from 'react';
-import {useEffect, useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { GameStatus } from './game-status';
 
-const DisplaySecretWord = ({secretWord, usedLetters, gameStatus, setGameStatus}: any) => {
+const DisplaySecretWord = ({secretWord, usedLetters, gameStatus, setGameStatus, color}: any) => {
    
     const [wordOutput, setWordOutput] = useState<string[]>([]);
 
@@ -22,12 +21,12 @@ const DisplaySecretWord = ({secretWord, usedLetters, gameStatus, setGameStatus}:
         setWordOutput(output);
     }, [secretWord, usedLetters]);
    
-    const letterStyle = (letter: string): string => {
+    const winnerColor = (): string => {
         if (gameStatus === GameStatus.WIN) {
-            return "btn-success";
+            return "-color-white -bg-" + color;
         }
 
-        return (letter !== "-") ? "btn-danger" : "btn-outline-danger";
+        return "";
     }
 
     const boxTitle = (): string => {
@@ -35,17 +34,15 @@ const DisplaySecretWord = ({secretWord, usedLetters, gameStatus, setGameStatus}:
     }
 
     return (
-        <div className="card m-3">
-            <div className="card-body"> 
-                <p>{boxTitle()}</p>
+        <div className={"secret-word-container -border-" + color }> 
+            <p className="box-title -mb-2">{boxTitle()}</p>
 
-                <div className="btn-group mb-2">
-                    {wordOutput.map((letter, i) => (
-                        <button type="button" className={`btn ${letterStyle(letter)} btn-sm`} key={i}>{letter}</button>
-                    ))}
-                </div>
-            </div>
-        </div>                                                
+            <ul className="display-secret-word">
+                {wordOutput.map((letter, i) => (
+                    <li className={`btn -btn-sm ${winnerColor()}`} key={i}>{letter}</li>
+                ))}
+            </ul>
+        </div>
     )
 }
 
