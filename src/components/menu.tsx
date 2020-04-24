@@ -56,11 +56,11 @@ const Menu = ({setCategory}: any) => {
 
     return (
         <div>
-            <p className="-h1 -mb-3">Palabras</p>
+            <p className="game-name -h1 -mb-4">Palabrerío</p>
 
             {menuCategories.map(categoryGroup => (
                 <div className="-d-flex-col-center -mb-3" key={categoryGroup.title} >
-                    <p className="-h4 -mb-2">{categoryGroup.title}</p>
+                    <p className="category-name -mb-2">{categoryGroup.title}</p>
 
                     {categoryGroup.categories.map(category => (
                         <button type="button" className={"btn -color-white -mb-2 -bg-" + category.color} onClick={() => setCategory(category)} key={category.name}>{category.name}</button>
